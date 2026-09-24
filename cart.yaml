@@ -1,5 +1,5 @@
-- name: configration of user file
-  hosts: user
+- name: configration of cart file
+  hosts: cart
   become: yes
   tasks:
    - name: disble node js old verstion
@@ -11,8 +11,8 @@
       name: nodejs
       state: installed
 
-   - name: create the ronboshop user
-     ansible.builtin.user:
+   - name: create the ronboshop cart
+     ansible.builtin.cart:
       name: roboshop
       shell: /sbin/nologin
       system: true
@@ -25,13 +25,13 @@
 
    - name: download code in app directory
      ansible.builtin.get_url:
-      url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip
-      dest: /tmp/user.zip
+      url: https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip
+      dest: /tmp/cart.zip
 
 
    - name: extract the code in zip
      ansible.builtin.unarchive:
-      src: /tmp/user.zip
+      src: /tmp/cart.zip
       dest: /app
       remote_src: yes
 
@@ -42,15 +42,15 @@
 
    - name: copy the cataloge systemd file
      ansible.builtin.copy:
-       src: user.service
-       dest: /etc/systemd/system/user.service 
+       src: cart.service
+       dest: /etc/systemd/system/cart.service 
    - name: sysstemdemaon reload
      ansible.builtin.systemd_service:
       daemon_reload: true
 
-   - name: enable and start user
+   - name: enable and start cart
      ansible.builtin.service:
-       name: user
+       name: cart
        state: started
        enabled: yes  
 
