@@ -53,7 +53,7 @@
    - name: rename the jar files
      ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
      args:
-     chdir: /app
+       chdir: /app
 
    - name: copy the cataloge systemd file
      ansible.builtin.copy:
