@@ -36,7 +36,7 @@
      ansible.builtin.unarchive:
        src: /usr/share/nginx/html 
        dest: /tmp/frontend.zip
-       reomote_src: yes
+       remote_src: yes
 
    - name: Remove default context
      ansible.builtin.file:
