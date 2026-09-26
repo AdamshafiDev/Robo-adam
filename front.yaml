@@ -1,5 +1,5 @@
 - name: frontend configration
-  hosts: frontend
+  hosts: front
   become: yes
   tasks:
    - name: disable old module
