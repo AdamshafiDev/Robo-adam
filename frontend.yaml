@@ -19,42 +19,42 @@
       state: started
       enabled: yes
 
-  #  - name: remove html directory
-  #    ansible.builtin.file:
-  #     path: /usr/share/nginx/html/
-  #     state: absent 
+   - name: remove html directory
+     ansible.builtin.file:
+      path: /usr/share/nginx/html/
+      state: absent 
 
-  #  - name: remove html directory
-  #    ansible.builtin.file:
-  #     path: /usr/share/nginx/html/
-  #     state: directory           
+   - name: remove html directory
+     ansible.builtin.file:
+      path: /usr/share/nginx/html/
+      state: directory           
 
-  #  - name: download the code
-  #    ansible.builtin.get_url:
-  #     url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
-  #     dest: /tmp/frontend.zip
+   - name: download the code
+     ansible.builtin.get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+      dest: /tmp/frontend.zip
 
 
-  #  - name: extract the frontend code
-  #    ansible.builtin.unarchive:
-  #      src: /tmp/frontend.zip 
-  #      dest: /usr/share/nginx/html
-  #      remote_src: yes
+   - name: extract the frontend code
+     ansible.builtin.unarchive:
+       src: /tmp/frontend.zip 
+       dest: /usr/share/nginx/html
+       remote_src: yes
 
-  #  - name: Remove default context
-  #    ansible.builtin.file:
-  #     path: /etc/nginx/nginx.conf
-  #     state: absent
+   - name: Remove default context
+     ansible.builtin.file:
+      path: /etc/nginx/nginx.conf
+      state: absent
 
-  #  - name: copy the roboshop context
-  #    ansible.builtin.copy:
-  #      src: nginx.conf
-  #      dest: /etc/nginx/nginx.conf
+   - name: copy the roboshop context
+     ansible.builtin.copy:
+       src: nginx.conf
+       dest: /etc/nginx/nginx.conf
 
-  #  - name: restart the services
-  #    ansible.builtin.service:
-  #     name: nginx
-  #     state: restarted
+   - name: restart the services
+     ansible.builtin.service:
+      name: nginx
+      state: restarted
 
 
 
