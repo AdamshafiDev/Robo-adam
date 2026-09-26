@@ -4,12 +4,15 @@
   tasks:
    - name: disable old module
      ansible.builtin.command: dnf module disable nginx -y
+
    - name: enable module
      ansible.builtin.command: dnf module enable nginx:1.24 -y
+     
    - name: install nginx server
      ansible.builtin.dnf:
        name: nginx 
        state: present
+
    - name: starte and enable nginx
      ansible.builtin.service:
       name: nginx
