@@ -20,76 +20,76 @@
 
 
 
-- name: create the ronboshop user
-  ansible.builtin.user:
+   - name: create the ronboshop user
+     ansible.builtin.user:
       name: roboshop
       shell: /sbin/nologin
       system: true
       home: /app
 
-- name: create app direcctory
-  ansible.builtin.file:
+   - name: create app direcctory
+     ansible.builtin.file:
       path: /app
       state: directory
 
 
-- name: download code in app directory
-  ansible.builtin.get_url:
+   - name: download code in app directory  
+     ansible.builtin.get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
       dest: /tmp/shipping.zip
 
 
-- name: extract the code in zip
-  ansible.builtin.unarchive:
+   - name: extract the code in zip
+     ansible.builtin.unarchive:
       src: /tmp/shipping.zip
       dest: /app
       remote_src: yes
 
-- name: install mvn dependcicy
-  ansible.builtin.command: mvn clean package
-  args:
-    chdir: /app
+   - name: install mvn dependcicy
+     ansible.builtin.command: mvn clean package
+     args:
+      chdir: /app
 
-- name: rename the jar files
-  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
-  args:
-   chdir: /app
+   - name: rename the jar files
+     ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+     args:
+     chdir: /app
 
-- name: copy the cataloge systemd file
-  ansible.builtin.copy:
+   - name: copy the cataloge systemd file
+     ansible.builtin.copy:
        src: shipping.service
        dest: /etc/systemd/system/shipping.service 
 
-- name: systemdemaon reload
-  ansible.builtin.systemd_service:
-    daemon_reload: true
+   - name: systemdemaon reload
+     ansible.builtin.systemd_service:
+      daemon_reload: true
 
 
-- name: start and enable shipping
-  ansible.builtin.service:
-    name: shipping 
-    state: started
-    enabled: yes
+   - name: start and enable shipping
+     ansible.builtin.service:
+      name: shipping 
+      state: started
+      enabled: yes
 
-- name: imprt data
-  tags: 
-   - import
-  ansible.mysql.mysql_db:
-   name: all
-   login_user: root
-   login_password: RoboShop@1
-   login_host: mysql.adamshafi.shop
-   state: import
-   targets: "{{ item }}"
-  loop:
-   - /app/db/schema.sql
-   - /app/db/app-user.sql 
-   - /app/db/master-data.sql
+   - name: imprt data
+     tags: 
+      - import
+     ansible.mysql.mysql_db:
+      name: all
+      login_user: root
+      login_password: RoboShop@1
+      login_host: mysql.adamshafi.shop
+      state: import
+      targets: "{{ item }}"
+      loop:
+       - /app/db/schema.sql
+       - /app/db/app-user.sql 
+       - /app/db/master-data.sql
 
-- name: Restart the server
-  ansible.builtin.service:
-    name: shipping
-    state: restarted
+   - name: Restart the server
+     ansible.builtin.service:
+       name: shipping
+       state: restarted
   
 
 
