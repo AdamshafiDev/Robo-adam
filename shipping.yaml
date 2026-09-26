@@ -16,7 +16,7 @@
        excutable: pip 3.9
      loop:
       - PyMysql
-      - cryptography  
+      #- cryptography  
 
 
 
