@@ -34,8 +34,8 @@
 
    - name: extract the frontend code
      ansible.builtin.unarchive:
-       src: /usr/share/nginx/html 
-       dest: /tmp/frontend.zip
+       src: /tmp/frontend.zip 
+       dest: /usr/share/nginx/html
        remote_src: yes
 
    - name: Remove default context
