@@ -81,7 +81,7 @@
       login_host: mysql.adamshafi.shop
       state: import
       targets: "{{ item }}"
-      loop:
+     loop:
        - /app/db/schema.sql
        - /app/db/app-user.sql 
        - /app/db/master-data.sql
