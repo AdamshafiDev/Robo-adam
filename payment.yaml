@@ -1,5 +1,5 @@
 - name: confiration python
-  hosts: payments
+  hosts: payment
   become: yes
   tasks:
    - name: install payments 
