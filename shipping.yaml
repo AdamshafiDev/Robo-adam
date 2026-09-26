@@ -74,7 +74,7 @@
    - name: imprt data
      tags: 
        - import
-     ansible.mysql.mysql_db:
+     community.mysql.mysql_db:
       name: all
       login_user: root
       login_password: RoboShop@1
