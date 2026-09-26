@@ -22,11 +22,11 @@
      community.rabbitmq.rabbitmq_user:   
        user: roboshop
        password: roboshop123
-       permissions:
-        - vhost: /
-          exchange: amq.topic
-          read_priv: .*
-          write_priv: 'prod\\.logging\\..*'
+       #permissions:
+        # - vhost: /
+        #   exchange: amq.topic
+        #   read_priv: .*
+        #   write_priv: 'prod\\.logging\\..*'
      state: present
     
 
