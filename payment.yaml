@@ -39,9 +39,9 @@
 
    - name: install dependcy
      ansible.builtin.pip:
-      requirements:
-      excutable: pip 3.9
-      args:
+      requirements: requirements.txt
+      executable: pip3.9
+     args:
        chdir: /app
    - name: copy the payment service
      ansible.builtin.copy:
