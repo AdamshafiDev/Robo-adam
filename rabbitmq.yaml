@@ -27,7 +27,7 @@
           exchange: amq.topic
           read_priv: .*
           write_priv: 'prod\\.logging\\..*'
-     state: present
+       state: present
     
 
 
