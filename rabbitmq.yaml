@@ -18,16 +18,16 @@
       state: started
       enabled: yes
 
-   - name: add the user
-     community.rabbitmq.rabbitmq_user:   
-       user: roboshop
-       password: roboshop123
-       permissions:
-        - vhost: /
-          exchange: amq.topic
-          read_priv: .*
-          write_priv: 'prod\\.logging\\..*'
-       state: present
+   - name: Add RabbitMQ user
+     community.rabbitmq.rabbitmq_user:
+        user: roboshop
+        password: roboshop123
+        permissions:
+          - vhost: /
+            configure_priv: .*
+            read_priv: .*
+            write_priv: .*
+        state: present
     
 
 
