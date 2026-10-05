@@ -1,0 +1,14 @@
+- name: testing install mongodb in servers
+  become: yes
+  hosts: che
+  tasks: 
+   - name: install mongodb
+     ansible.builtin.dnf:
+      name: mongodb-org
+      state: present
+
+   - name: start mongodb
+     ansible.builtin.service:
+      name: mongod 
+      state: started
+      enabled: yes   
